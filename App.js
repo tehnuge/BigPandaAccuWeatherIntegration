@@ -95,7 +95,7 @@ exports.handler = (event, context, callback) => {
       req.end();
     }
   }
-  
+
   const getLocationKeys = (query) => {
     const options = {
       hostname: 'dataservice.accuweather.com',
@@ -124,5 +124,10 @@ exports.handler = (event, context, callback) => {
     return data;
   }
 
-  getLocationKeys('san%20francisco');
+  try{
+    getLocationKeys('san%20francisco');
+  }
+  catch(e){
+    callback(e);
+  }
 }
