@@ -126,8 +126,9 @@ exports.handler = (event, context, callback) => {
 
   try{
     getLocationKeys('san%20francisco');
+    callback(null, { "statusCode" : 200, "body" : "Call successful."})
   }
   catch(e){
-    callback(e);
+    callback(e, { "statusCode" : 500, "body" : e});
   }
 }
