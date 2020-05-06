@@ -124,11 +124,16 @@ exports.handler = (event, context, callback) => {
     return data;
   }
 
-  try{
-    getLocationKeys('san%20francisco');
-    callback(null, { "statusCode" : 200, "body" : "Call successful."})
+  try {
+    if (event.queryStringParameters && event.queryStringParameters.name) {
+      getLocationKeys(event.queryStringParameters.name);
+    }
+    else{
+      getLocationKeys('san%20francisco');
+    }
+    callback(null, { "statusCode": 200, "body": "Call successful." })
   }
-  catch(e){
-    callback(e, { "statusCode" : 500, "body" : e});
+  catch (e) {
+    callback(e, { "statusCode": 500, "body": e });
   }
 }
